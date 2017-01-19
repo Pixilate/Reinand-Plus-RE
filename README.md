@@ -33,6 +33,7 @@ Copy everything in 'out' folder to SD root and run!
     * EShop update check disabled
     * RO verification disabled
     * Language Emulation via /rei+/locales
+	* Reboot Patches for o3ds
 
 **Credits:**
  
@@ -54,6 +55,8 @@ Copy everything in 'out' folder to SD root and run!
  
  CrimsonMaple for fixing Makefile, Loader and Making a Release.
  
+ Roxas75/Delebile for Reboot Patch Code.
+ 
  The community for your support and help!
  
  
@@ -61,7 +64,6 @@ Copy everything in 'out' folder to SD root and run!
  
  This simply just a reinand modification due to it not being really updated and falling behind. I will try my best to add the following:
  
- * Reboot Patches for o3DS
  * code loading and other things
  * Clean Gui Screen
  

@@ -21,9 +21,11 @@ u8 unmountSD(void){
     return 0;
 }
 
-void fopen(const void *filename, const char *mode){
+u8 fopen(const void *filename, const char *mode){
+	u8 res;
     if (*mode == 'r' || *mode == 'w' || *mode == 'a')
-        f_open(&fp, filename, *mode == 'r' ? FA_READ : (FA_WRITE | FA_OPEN_ALWAYS));
+		res = f_open(&fp, filename, *mode == 'r' ? FA_READ : (FA_WRITE | FA_OPEN_ALWAYS));
+    return res == 0 ? 1 : 0;
 }
 
 void fclose(void){

@@ -294,10 +294,9 @@ void patchCode(u64 progId, u8 *code, u32 size)
                 regionFreePatch, 
                 sizeof(regionFreePatch), 1
                 );
-
             break;
         }
-
+		
         case 0x0004003000008A02LL: // ErrDisp
         {
             static const u8 unitinfoCheckPattern1[] = { 
@@ -400,7 +399,7 @@ void patchCode(u64 progId, u8 *code, u32 size)
                     sizeof(secureinfoFilenamePatch) - sizeof(u16), 2
                     );
             }
-
+			
             break;
         }
 

@@ -68,14 +68,15 @@ $(dir_out)/rei+/: $(dir_data)/firmware.bin $(dir_data)/splash.bin
 
 $(dir_out)/rei+/loader.cxi: $(dir_loader)
 	@$(MAKE) $(FLAGS) -C $(dir_loader)
-	@mv $(dir_loader)/ReiNand+.dat.cxi $(dir_out)/rei+
-    
-$(dir_build)/payloads.h: $(dir_payload)/emunand.s
+	@mv $(dir_loader)/ReiNand+.dat.cxi $(dir_out)/rei+/loader.cxi
+
+$(dir_build)/payloads.h: $(dir_payload)/emunand.s $(dir_payload)/reboot.s
 	@mkdir $(dir_build)
-	@armips $<
-	@armips $(word 1,$^)
+	@armips $(word 1, $^)
+	@armips $(word 2, $^)
 	@mv emunand.bin $(dir_build)
-	@bin2c -o $@ -n emunand $(dir_build)/emunand.bin
+	@mv reboot.bin $(dir_build)
+	@bin2c -o $@ -n emunand $(dir_build)/emunand.bin -n reboot $(dir_build)/reboot.bin
 
 $(dir_build)/main.bin: $(dir_build)/main.elf
 	$(OC) -S -O binary $< $@
