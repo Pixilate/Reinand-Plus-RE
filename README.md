@@ -1,3 +1,5 @@
+**First Off**
+This branch serves for experimental builds of Rei+. compile at your own will. -Pixilate
 # ReiNand+
 [![License (GPL version 3)](https://img.shields.io/badge/license-GNU%20GPL%20version%203-red.svg?style=flat-square)](http://opensource.org/licenses/GPL-3.0)
 
@@ -64,7 +66,7 @@ Copy everything in 'out' folder to SD root and run!
  
  This simply just a reinand modification due to it not being really updated and falling behind. I will try my best to add the following:
  
- * code loading and other things
+ * other things
  * Clean Gui Screen
  
 Im only working on this during my free time due to it not really being a priority for the time being so feel free to fork and push a merge for commits!
