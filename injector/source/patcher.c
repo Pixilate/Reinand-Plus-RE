@@ -104,6 +104,35 @@ static u32 secureInfoExists(void)
     return secureInfoExists;
 }
 
+static inline u32 loadTitleCodeSection(u64 progId, u8 *code, u32 size)
+{
+    /* Here we look for "/rei+/code/[u64 titleID in hex, uppercase].bin"
+       If it exists it should be a decompressed binary code file */
+
+    char path[] = "/rei+/code/0000000000000000.bin";
+    progIdToStr(path + 35, progId);
+
+    IFile file;
+    u32 ret = 0;
+
+    if(R_SUCCEEDED(openLumaFile(&file, path)))
+    {
+        u64 fileSize;
+
+        if(R_FAILED(IFile_GetSize(&file, &fileSize)) || fileSize > size) ret = 1;
+        else
+        {
+            u64 total;
+
+            if(R_FAILED(IFile_Read(&file, &total, code, fileSize)) || total != fileSize) ret = 1;
+        }
+
+        IFile_Close(&file);
+    }
+
+    return ret;
+}
+
 static int loadTitleLocaleConfig(u64 progId, u8 *regionId, u8 *languageId)
 {
     /* Here we look for "/rei+/[u64 titleID in hex, uppercase].txt"
