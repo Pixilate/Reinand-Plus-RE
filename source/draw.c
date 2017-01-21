@@ -25,7 +25,7 @@ void loadSplash(void){
 			fread(fb->top_left, 1, fsize());
 			fclose();
 		}
-		if(fopen("/rei/splashBottom.bin", "rb")){
+		if(fopen("/rei+/splashBottom.bin", "rb")){
 			fread(fb->bottom, 1, fsize());
 			fclose();
 		}
