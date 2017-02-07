@@ -116,7 +116,7 @@ void patchFirm(){
     memcpy((void*)sigPatchOffset2, sigPatch2, sizeof(sigPatch2));
 	
 	//Apply Reboot Patch on Firm. Add kernel check 
-	getReboot(firmLocation, firmSize, &rebootOffset);
+    getReboot(firmLocation, firmSize, &rebootOffset);
     memcpy((void*)rebootOffset, reboot, reboot_size);
     uPtr *FOpenPos = (uPtr*)memsearch(rebootOffset, "OPEN", reboot_size, 4);
     getFOpen(firmLocation, firmSize, &fOpenOffset);
@@ -128,10 +128,10 @@ void patchFirm(){
 }
 
 void launchFirm(void){
-   	//Copy firm partitions to respective memory locations
-	int sectionNumber = 1;
-	for(; sectionNumber < 4 && firm ->section[sectionNumber].size !=0; sectionNumber++)
-		memcpy(firm->section[sectionNumber].address, (u8 *)firm + firm->section[sectionNumber].offset, firm->section[sectionNumber].size);
+    //Copy firm partitions to respective memory location
+    int sectionNumber = 1;
+    for(; sectionNumber < 4 && firm ->section[sectionNumber].size !=0; sectionNumber++)
+        memcpy(firm->section[sectionNumber].address, (u8 *)firm + firm->section[sectionNumber].offset, firm->section[sectionNumber].size);
     
     //Run ARM11 screen stuff
     vu32 *arm11 = (vu32*)0x1FFFFFF8;
