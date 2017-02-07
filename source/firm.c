@@ -121,16 +121,17 @@ void patchFirm(){
     uPtr *FOpenPos = (uPtr*)memsearch(rebootOffset, "OPEN", reboot_size, 4);
     getFOpen(firmLocation, firmSize, &fOpenOffset);
     *FOpenPos = fOpenOffset;
-    if(fopen("/rei/rebootFirmware.bin", "wb")){
+    if(fopen("/rei+/rebootFirmware.bin", "wb")){
         fwrite(firmLocation, 1, firmSize);
         fclose();
 	}
 }
 
 void launchFirm(void){
-    //Copy firm partitions to respective memory locations
-    memcpy(firm->section[1].address, firmLocation + firm->section[1].offset, firm->section[1].size);
-    memcpy(firm->section[2].address, firmLocation + firm->section[2].offset, firm->section[2].size);
+   	//Copy firm partitions to respective memory locations
+	int sectionNumber = 1;
+	for(; sectionNumber < 4 && firm ->section[sectionNumber].size !=0; sectionNumber++)
+		memcpy(firm->section[sectionNumber].address, (u8 *)firm + firm->section[sectionNumber].offset, firm->section[sectionNumber].size);
     
     //Run ARM11 screen stuff
     vu32 *arm11 = (vu32*)0x1FFFFFF8;
